@@ -48,5 +48,19 @@ namespace TDDKata
             //Assert
             Assert.Equal(expected, actual);
         }
+        [Fact]
+        public void AddStringAndShouldBeCorrectResult()
+        {
+            //Arrange
+            string digits = "ss,ss";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
