@@ -7,7 +7,7 @@ namespace TDDKata
     public class UnitTest1
     {
         [Fact]
-        public void AddNoDigitsAndShouldBeCorrectResult()
+        public void AddBlankAndCalcShouldReturnZero()
         {
             //Arrange
             string digits = "";
@@ -21,7 +21,22 @@ namespace TDDKata
             Assert.Equal(expected, actual);
         }
         [Fact]
-        public void AddDigitsAndShouldBeCorrectResult()
+        public void AddNullAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = null;
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void AddCorrectDigitsAndCalcShouldReturnCorrectResult()
         {
             //Arrange
             string digits = "1,2,3";
@@ -35,11 +50,11 @@ namespace TDDKata
             Assert.Equal(expected, actual);
         }
         [Fact]
-        public void AddDigitsWithMultipleCommasAndShouldBeCorrectResult()
+        public void AddMultipleCommasCalcShouldReturnMinusOne()
         {
             //Arrange
             string digits = "1,,2,,3";
-            int expected = 6;
+            int expected = -1;
             var result = new Calc();
 
             //Act
@@ -49,10 +64,38 @@ namespace TDDKata
             Assert.Equal(expected, actual);
         }
         [Fact]
-        public void AddStringAndShouldBeCorrectResult()
+        public void AddStringAndCalcShouldReturnMinusOne()
         {
             //Arrange
-            string digits = "ss,ss";
+            string digits = "ss";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddCommaSeparatedStringAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "s,s";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddOtherThanCommasAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "1@";
             int expected = -1;
             var result = new Calc();
 
