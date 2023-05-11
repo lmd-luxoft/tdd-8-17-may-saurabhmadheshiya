@@ -230,11 +230,39 @@ namespace TDDKata
             “//[delimiter]\n[numbers…]” for example “//;\n1;2” should return three where the default delimiter is ‘;’ 
             the first line is optional – all existing scenarios should still be supported*/
         [Fact]
-        public void AddDifferentDelimitersNewLineAndCalcShouldReturnCorrectResult()
+        public void AddNewDelimitersNewLineAndCalcShouldReturnCorrectResult()
         {
             //Arrange
             string digits = "//;\n1;2";
             int expected = 3;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddDifferentDelimitersNoNewLineAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "//;1;2;3";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddDifferentDelimitersWithNewLineAndCalcShouldReturnCorrectResult()
+        {
+            //Arrange
+            string digits = "//;\n1,2,3";
+            int expected = 6;
             var result = new Calc();
 
             //Act
