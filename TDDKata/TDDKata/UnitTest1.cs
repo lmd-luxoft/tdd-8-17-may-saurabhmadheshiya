@@ -151,5 +151,79 @@ namespace TDDKata
             //Assert
             Assert.Equal(expected, actual);
         }
+
+        /*Allow the Add method to handle new lines between numbers (instead of commas)
+            •the following input is ok:  “1\n2,3”  (will equal 6)
+            •the following input is NOT ok:  “1,\n”*/
+        [Fact]        
+        public void AddNewLineWithCommasAndCalcShouldReturnCorrectResult()
+        {
+            //Arrange
+            string digits = "1\n2,3";
+            int expected = 6;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddNewLineInEndAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "1,\n";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddStringNewLineAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "A\n";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddNewLineInStartAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "\n1,2";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void AddOnlyNewLineAndCalcShouldReturnMinusOne()
+        {
+            //Arrange
+            string digits = "\n";
+            int expected = -1;
+            var result = new Calc();
+
+            //Act
+            var actual = result.Add(digits);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
