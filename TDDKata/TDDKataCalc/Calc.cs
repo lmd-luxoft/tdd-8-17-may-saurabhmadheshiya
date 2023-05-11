@@ -16,7 +16,9 @@
                 if (int.TryParse(item, out result))
                     totalSum += result;
                 else
-                    totalSum = -1 ; break;
+                {
+                    totalSum = -1; break;
+                }
             }
             return totalSum;
         }
